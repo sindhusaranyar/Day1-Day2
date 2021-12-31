@@ -1,0 +1,118 @@
+Blog on advantages of HTTP2 over HTTP1.1:
+      
+	  1.Web Traffic:
+	       *HTTP/1.1 provides faster delivery of web pages and reduces web traffic as compared to HTTP/1.0. However, TCP starts slowly and with domain sharing, connection reuse and pipelining, there is an increased risk of       network congestion.HTTP/2 utilizes multiplexing and server push to effectively reduce the page load time by a greater margin along with being less sensitive to network delay.
+		   *HTTP2 is much faster and more reliable than HTTP1.
+	       *HTTP1 loads a single request for every TCP connection, while HTTP2 avoids network delay by using multiplexing.
+	
+      2.Key Feature:
+	       *HTTP1.1 supports connection reuse i.e. for every TCP connection there could be multiple requests and responses, and pipelining where the client can request several resources from the server at once. However, pipelining was hard to implement due to issues such as head-of-line blocking and was not a feasible solution.
+		   *Whereas  HTTP2 Uses multiplexing, where over a single TCP connection resources to be delivered are interleaved and arrive at the client almost at the same time. It is done using streams which can be prioritized, can have dependencies and individual flow control. It also provides a feature called server push that allows the server to send data that the client will need but has not yet requested.
+	 
+	 3.Status Code:
+	        *HTTP1.1 introduces a warning header field to carry additional information about the status of a message. Can define 24 status codes, error reporting is quicker and more efficient.	
+			* In HTTP2 the underlying semantics of HTTP such as headers, status codes remains the same.
+			
+      
+	  4.Authentication Mechanism:
+	          *HTTP1.1 is relatively secure since it uses digest authentication, NTLM authentication.	
+			  *Security concerns from previous versions will continue to be seen in HTTP/2. However, it is better equipped to deal with them due to new TLS features like connection error of type Inadequate_Security.  
+			  
+	  5.Caching:
+	        *Expands on the caching support by using additional headers like cache-control, conditional headers like If-Match and by using entity tags.	
+			*HTTP/2 does not change much in terms of caching. With the server push feature if the client finds the resources are already present in the cache, it can cancel the pushed stream.
+			
+			
+		 	
+		Difference between HTTP1.1 vs HTTP2
+		
+		
+Introduction of HTTP:
+        Hypertext Transfer Protocol (HTTP) is an application protocol that is, currently, the foundation of data communication for the World Wide Web.
+        The first usable version of Introduction of HTTP was created in 1997. Because it went through several stages of development, this first version of HTTP was called HTTP/1.1. This version is still in use on the web. In 2015, a new version of HTTP called HTTP2 was created.  
+		
+High level Differences between HTTP/2 and HTTP/1.1 :
+        HTTP2 is binary, instead of textual
+        HTTP2 is fully multiplexed, instead of ordered and blocking
+        HTTP2 uses header compression to reduce overhead
+        HTTP2 allows servers to “push” responses proactively into client caches
+
+Binary Protocol :
+        HTTP1.1 used to process text commands to complete request-response cycles. HTTP/2 will use binary commands (in 1s and 0s) to execute the same tasks. This attribute eases complications with framing and simplifies implementation of commands that were confusingly intermixed due to commands containing text and optional spaces.
+                Texts will be convertered to Binary(1’s and 0's)
+
+Multiplexing :
+        HTTP/1.1 loads resources one after the other, so if one resource cannot be loaded, it blocks all the other resources behind it. In contrast, HTTP/2 is able to use a single TCP connection to send multiple streams of data at once so that no one resource blocks any other resource. HTTP/2 does this by splitting data into binary-code messages and numbering these messages so that the client knows which stream each binary message belongs to.
+
+
+Header compression:
+        Small files load more quickly than large ones. To speed up web performance, both HTTP/1.1 and HTTP/2 compress HTTP messages to make them smaller. However, HTTP/2 uses a more advanced compression method called HPACK that eliminates redundant information in HTTP header packets. This eliminates a few bytes from every HTTP packet. Given the volume of HTTP packets involved in loading even a single webpage, those bytes add up quickly, resulting in faster loading.
+
+
+Server Push:
+        Typically, a server only serves content to a client device if the client asks for it. However, this approach is not always practical for modern webpages, which often involve several dozen separate resources that the client must request. Server Push capability allows the server to send additional cacheable information to the client that isn’t requested but is anticipated in future requests. For example, if the client requests for the resource X and it is understood that the resource Y is referenced with the requested file, the server can choose to push Y along with X instead of waiting for an appropriate client request.
+
+
+	
+			
+			
+			
+Blog about objects and its internal representation in javascript:
+
+		Objects, in JavaScript, is it’s most important data-type and forms the building blocks for modern JavaScript. These objects are quite different from JavaScript’s primitive data-types(Number, String, Boolean, null, undefined and symbol) in the sense that while these primitive data-types all store a single value each
+       
+        Objects are more complex and each object may contain any combination of these primitive data-types as well as reference data-types.	   
+		
+		An object, is a reference data type. Variables that are assigned a reference value are given a reference or a pointer to that value. That reference or pointer points to the location in memory where the object is stored. The variables don’t actually store the value.
+        
+		Objects in JavaScript may be defined as an unordered collection of related data, of primitive or reference types, in the form of “key: value” pairs. These keys can be variables or functions and are called properties and methods, respectively, in the context of an object.
+		
+		Objects and properties:
+                      A JavaScript object has properties associated with it. A property of an object can be explained as a variable that is attached to the object. Object properties are basically the same as ordinary JavaScript variables, except for the attachment to objects. The properties of an object define the characteristics of the object. You access the properties of an object with a simple dot-notation:
+
+
+                                                           objectName.propertyName
+		
+		
+		Like all JavaScript variables, both the object name and property name are case sensitive. You can define a property by assigning it a value. 												   
+		Unassigned properties of an object are undefined
+		
+		Creating Objects In JavaScript :
+             Create JavaScript Object with Object Literal:
+                                       One of easiest way to create a javascript object is object literal, simply define the property and values inside curly braces 
+                                        
+										
+										
+										           let bike = {name: 'SuperSport', maker:'Ducati', engine:'937cc'};
+												   
+	    Create JavaScript Object with Constructor
+                Constructor is nothing but a function and with help of new keyword, constructor function allows to create multiple objects of same flavor 
+                                               
+											   
+										
+                                function Vehicle(name, maker) {
+                                this.name = name;
+                                this.maker = maker;
+                                }
+                                let car1 = new Vehicle(’Fiesta’, 'Ford’);
+                                let car2 = new Vehicle(’Santa Fe’, 'Hyundai’)
+                                console.log(car1.name);    //Output: Fiesta
+                                console.log(car2.name);    //Output: Santa Fe
+        
+		Using the JavaScript Keyword new
+                  The following example also creates a new JavaScript object with four properties:
+                                
+                         var person = new Object();
+                         person.firstName = “John”;
+                         person.lastName = “Doe”;
+                         person.age = 50;
+                          person.eyeColor = “blue”;
+        Using the Object.create method
+                    Objects can also be created using the Object.create() method. This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function
+					
+                      var Animal = { 
+                         type: 'Invertebrates', // Default value of properties
+                         displayType: function() {  // Method which will display type of Animal
+                         console.log(this.type);
+                          }
+                       };
